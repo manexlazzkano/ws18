@@ -6,7 +6,7 @@
 	if ($lokal) {
 	   $zerbitzaria="localhost:1234";
 	   $erabiltzailea="id7197603_manexlazkano";
-	   $gakoa="Sistemasweb99";  // GitHub-en eremu hau EZABATU
+	   $gakoa="";  // GitHub-en eremu hau EZABATU
 	   $db="id7197603_quiz";        // hodeiko db izena: hodeiko aurrizkia + zuek adierazitako db izena atzizki moduan
 
 	} else {
