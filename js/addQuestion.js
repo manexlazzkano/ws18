@@ -11,9 +11,8 @@ function balioztatu() {
 	var erroreak = "";
 	if(eposta == "") erroreak += "* Egilearen eposta zehaztu gabe dago\n";
 	else {
-		var epostaExp = /[a-zA-Z][a-zA-Z]+[0-9][0-9][0-9]@ikasle.ehu.eus/;
-		if(epostaExp.test(eposta)) erroreak += "* Eposta zuzena\n";
-		else erroreak += "* Eposta okerra\n";
+		var epostaExp = new RegExp("^[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus$");
+		if(!epostaExp.test(eposta)) erroreak += "* Eposta okerra\n";
 	}
 	
 	if(galdera == "") erroreak += "* Galderaren testua zehaztu gabe dago\n";

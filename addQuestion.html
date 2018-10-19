@@ -27,46 +27,30 @@
 			<nav class='main' id='n1' role='navigation'>
 				<span><a href='layout.html'>Home</a></span>
 				<span><a href='/quizzes'>Quizzes</a></span>
+				<span><a href='php/showQuestions.php'>Show questions</a></span>
 				<span><a href='credits.html'>Credits</a></span>
 			</nav>
 			
 			<section class="main" id="s1">
 				<div>
-				<div id="F1">
-					Egilearen eposta (*): </br></br>
-					Galderaren testua (*): </br></br>
-					Erantzun zuzena (*): </br></br>
-					Erantzun okerra1 (*): </br></br>
-					Erantzun okerra2 (*): </br></br>
-					Erantzun okerra3 (*): </br></br>
-					Galderaren zailtasuna (0 eta 5 artekoa) (*): </br></br>
-					Galderaren gai-arloa (*):
-				</div>
-				<form id="formularioa" action="php/proba.php" method="post">
-					<div id="F2">
-						<input type="text" class="input" id="eposta" size="50"/> </br></br>
-						<input type="text" class="input" id="galdera" size="110"/> </br></br>
-						<input type="text" class="input" id="erantzunZuzena" size="110"/> </br></br>
-						<input type="text" class="input" id="erantzunOkerra1" size="110"/> </br></br>
-						<input type="text" class="input" id="erantzunOkerra2" size="110"/> </br></br>
-						<input type="text" class="input" id="erantzunOkerra3" size="110"/> </br></br>
-						
-						<select class="input" id="eragiketaMota">
-							<option value="zero">0</option>
-							<option value="bat">1</option>
-							<option value="bi">2</option>
-							<option value="hiru">3</option>
-							<option value="lau">4</option>
-							<option value="bost">5</option>
-						</select> <br><br>
-						
-						<input type="text" class="input" id="arloa"/>						
-					</div>
-					<div id="F3">
-						</br>
-						<input type="submit" id="Bidali" value="Bidali" onclick="return balioztatu();"/>
-						<input type="reset" id="Garbitu" value="Garbitu"/>
-					</div>
+				<form id="formularioa" name="formularioa" action="php/addQuestion.php" method="post">
+					Egilearen eposta (*): <input type="text" class="input" id="eposta" name="eposta" size="50"/> </br></br>
+					Galderaren testua (*): <input type="text" class="input" id="galdera" name="galdera" size="110"/> </br></br>
+					Erantzun zuzena (*): <input type="text" class="input" id="erantzunZuzena" name="erantzunZuzena" size="110"/> </br></br>
+					Erantzun okerra1 (*): <input type="text" class="input" id="erantzunOkerra1" name="erantzunOkerra1" size="110"/> </br></br>
+					Erantzun okerra2 (*): <input type="text" class="input" id="erantzunOkerra2" name="erantzunOkerra2" size="110"/> </br></br>
+					Erantzun okerra3 (*): <input type="text" class="input" id="erantzunOkerra3" name="erantzunOkerra3" size="110"/> </br></br>
+					Galderaren zailtasuna (0 eta 5 artekoa) (*): <select class="input" id="zailtasuna" name="zailtasuna">
+																	<option value="zero">0</option>
+																	<option value="bat">1</option>
+																	<option value="bi">2</option>
+																	<option value="hiru">3</option>
+																	<option value="lau">4</option>
+																	<option value="bost">5</option>
+																</select> <br><br>
+					Galderaren gai-arloa (*): <input type="text" class="input" id="arloa" name="arloa"/> </br></br>
+					<input type="submit" id="Bidali" name="Bidali" value="Bidali" onclick="return balioztatu()"/>
+					<input type="reset" id="Garbitu" name="Garbitu" value="Garbitu"/>
 				</form>
 				</div>
 			</section>
