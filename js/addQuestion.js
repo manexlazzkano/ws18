@@ -1,4 +1,33 @@
-function balioztatu() {
+$(document).ready(function(){
+$(function(){
+	$("#fitxategia").change(function(e){
+		addImage(e); 
+	});
+
+	function addImage(e){
+		var file = e.target.files[0],
+		imageType = /image.*/;
+	
+		if (!file.type.match(imageType))
+			return;
+  
+		var reader = new FileReader();
+		reader.onload = fileOnload;
+		reader.readAsDataURL(file);
+	}
+  
+	function fileOnload(e){
+		var result=e.target.result;
+		
+		$("#divIrudi").append("<style>#n1,#s1{height:500px;}</style>");
+		$("#divIrudi").append('<img id="irudia" src="" width="100" height="100"></br></br>');
+		$("#irudia").attr("src",result);
+	}
+});
+});
+
+$(document).ready(function(){
+$("#Bidali").click(function() {
 	var eposta = $("#eposta").val();				
 	var galdera = $("#galdera").val();
 	var erantzunZuzena = $("#erantzunZuzena").val();				
@@ -24,9 +53,18 @@ function balioztatu() {
 	if(arloa == "") erroreak += "* Gai-arloa zehaztu gabe dago\n";
 	
 	
-	if(erroreak === "") return true
-	else {
+	if(erroreak != "") {
 		alert(erroreak);
 		return false;
 	}
-}
+	else return true;
+});
+});
+
+
+$(document).ready(function(){
+$("#Garbitu").click(function() {
+	$("#divIrudi").remove();
+});
+});
+

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Show questions</title>
+		<title>Add question</title>
 	</head>
 	
 	<body>

@@ -28,12 +28,14 @@
 				<span><a href='layout.html'>Home</a></span>
 				<span><a href='/quizzes'>Quizzes</a></span>
 				<span><a href='php/showQuestions.php'>Show questions</a></span>
+				<span><a href='php/showQuestionswithImages.php'>Show questions with images</a></span>
 				<span><a href='credits.html'>Credits</a></span>
+				
 			</nav>
 			
 			<section class="main" id="s1">
 				<div>
-				<form id="formularioa" name="formularioa" action="php/addQuestion.php" method="post">
+				<form id="formularioa" name="formularioa" action="php/addQuestionwithImage.php" method="post" enctype="multipart/form-data">
 					Egilearen eposta (*): <input type="text" class="input" id="eposta" name="eposta" size="50"/> </br></br>
 					Galderaren testua (*): <input type="text" class="input" id="galdera" name="galdera" size="110"/> </br></br>
 					Erantzun zuzena (*): <input type="text" class="input" id="erantzunZuzena" name="erantzunZuzena" size="110"/> </br></br>
@@ -49,10 +51,14 @@
 																	<option value="bost">5</option>
 																</select> <br><br>
 					Galderaren gai-arloa (*): <input type="text" class="input" id="arloa" name="arloa"/> </br></br>
-					<input type="submit" id="Bidali" name="Bidali" value="Bidali" onclick="return balioztatu()"/>
+					Irudia: <input type="file" class="input" id="fitxategia" name="fitxategia"/> </br></br>
+					<div id="divIrudi"></div>
+					
+					<input type="submit" id="Bidali" name="Bidali" value="Bidali"/>
 					<input type="reset" id="Garbitu" name="Garbitu" value="Garbitu"/>
 				</form>
 				</div>
+				
 			</section>
 
 			<footer class='main' id='f1'>
