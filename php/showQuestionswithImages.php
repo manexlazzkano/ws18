@@ -45,7 +45,7 @@
 							echo "<td>".$galdera['erantzunOkerra3']."</td>";
 							echo "<td>".$galdera['zailtasuna']."</td>";
 							echo "<td>".$galdera['arloa']."</td>";
-							echo "<td><img src='data:image/*;base64,".base64_encode($galdera['irudia'])."'></td>";
+							echo "<td><img width='100' height='100' src='data:image/*;base64,".base64_encode($galdera['irudia'])."'></td>";
 						echo "</tr>";
 					}
 				}

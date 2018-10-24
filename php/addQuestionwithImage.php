@@ -22,10 +22,6 @@
 				$arloa = $_POST['arloa'];		
 				$irudia = addslashes(file_get_contents($_FILES['fitxategia']['tmp_name']));
 				
-				list($width, $height) = $this->getDimensions($newWidth, $newHeight, $option);
-				$this->imageResized = imagecreatetruecolor($width, $height);
-        imagecopyresampled($this->imageResized, $this->image, 0, 0, 0, 0, $width, $height, $this->width, $this->height);
-				
 				$sql = "INSERT INTO QUESTIONS (eposta, galderaTestua, erantzunZuzena, erantzunOkerra1, erantzunOkerra2, erantzunOkerra3, zailtasuna, arloa, irudia) VALUES ('$eposta', '$galdera', '$erantzunZuzena', '$erantzunOkerra1', '$erantzunOkerra2', '$erantzunOkerra3', '$zailtasuna', '$arloa', '$irudia')";
 				if(mysqli_query($linki, $sql)) {
 					echo "Zure galdera datu basera gehitu da</br>";
