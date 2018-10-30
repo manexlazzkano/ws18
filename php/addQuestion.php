@@ -7,7 +7,7 @@
 	<body>
 		<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
 		<?php
-			$eposta = $_POST['eposta'];
+			$eposta = trim($_POST['eposta']);
 			$galdera = preg_replace('/\s\s+/', ' ', trim($_POST['galdera']));
 			$erantzunZuzena = $_POST['erantzunZuzena'];
 			$erantzunOkerra1 = $_POST['erantzunOkerra1'];

@@ -1,6 +1,6 @@
 $(document).ready(function(){
 $("#formularioa").submit(function(){
-	var eposta = $("#eposta").val();				
+	var eposta = $("#eposta").val().trim(eposta);				
 	var galdera = $("#galdera").val().trim(galdera).replace(/\s+/g, " ");
 	var erantzunZuzena = $("#erantzunZuzena").val();				
 	var erantzunOkerra1 = $("#erantzunOkerra1").val();
