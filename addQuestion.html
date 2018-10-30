@@ -12,8 +12,10 @@
 			   type='text/css' 
 			   media='only screen and (max-width: 480px)'
 			   href='styles/smartphone.css' />
-		<script src="js/jquery-3.2.1.js"></script>
-		<script src="js/addQuestion.js"></script>
+		<!-- <script src="js/jquery-3.2.1.js"></script> -->
+		<!-- <script src="js/addImage.js"></script> -->
+		<!-- <script src="js/removeImage.js"></script> -->
+		<!-- <script src="js/addQuestion.js"></script> -->
 	</head>
 	<body>
 		<div id='page-wrap'>
@@ -28,14 +30,13 @@
 				<span><a href='layout.html'>Home</a></span>
 				<span><a href='/quizzes'>Quizzes</a></span>
 				<span><a href='php/showQuestions.php'>Show questions</a></span>
-				<span><a href='php/showQuestionswithImages.php'>Show questions with images</a></span>
 				<span><a href='credits.html'>Credits</a></span>
 				
 			</nav>
 			
 			<section class="main" id="s1">
 				<div>
-				<form id="formularioa" name="formularioa" action="php/addQuestionwithImage.php" method="post" enctype="multipart/form-data">
+				<form id="formularioa" name="formularioa" action="php/addQuestion.php" method="post" enctype="multipart/form-data">
 					Egilearen eposta (*): <input type="text" class="input" id="eposta" name="eposta" size="50"/> </br></br>
 					Galderaren testua (*): <input type="text" class="input" id="galdera" name="galdera" size="110"/> </br></br>
 					Erantzun zuzena (*): <input type="text" class="input" id="erantzunZuzena" name="erantzunZuzena" size="110"/> </br></br>
@@ -51,11 +52,11 @@
 																	<option value="bost">5</option>
 																</select> <br><br>
 					Galderaren gai-arloa (*): <input type="text" class="input" id="arloa" name="arloa"/> </br></br>
-					Irudia: <input type="file" class="input" id="fitxategia" name="fitxategia"/> </br></br>
+					Irudia (hautazkoa): <input type="file" class="input" id="fitxategia" name="fitxategia"/> </br></br>
 					<div id="divIrudi"></div>
 					
-					<input type="submit" id="Bidali" name="Bidali" value="Bidali"/>
-					<input type="reset" id="Garbitu" name="Garbitu" value="Garbitu"/>
+					<input type="submit" value="     Bidali     "/>
+					<input type="reset" value="     Garbitu     "/>
 				</form>
 				</div>
 				
