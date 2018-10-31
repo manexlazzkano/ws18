@@ -16,6 +16,7 @@ nav span             	{ margin: 0px 10px 0px 0px;
 
 #ErrorMsgs          	{ color: #f61; font-size: smaler}
 
+#h1						{height: 40px;}
 #backButton				{float:left}
 .irudiak				{border: 1px solid black;}
 #Ikaslea1				{float: left;}

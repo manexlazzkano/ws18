@@ -10,11 +10,15 @@
 		ul		 {list-style: none; margin-left: 500px; float:right;}
 		ul li	 {display: inline;}
 	</style>
+	<script src="../js/jquery-3.2.1.js"></script>
+	<script src="../js/loginControl.js"></script>
 	
 	<body>
 		<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
 		<ul>
 			<li><a href='../layout.html'>Home</a></li>
+			<li><a href='/quizzes'>Quizzes</a></li>
+			
 			<li><a href='../addQuestion.html'>Add question</a></li>
 			<li><a href='../credits.html'>Credits</a></li>
 		</ul>

@@ -25,8 +25,9 @@ $("#formularioa").submit(function(){
 	if(erantzunOkerra3 == "") erroreak += "(*) Erantzun okerra3 zehaztu gabe dago\n";
 	if(arloa == "") erroreak += "(*) Gai-arloa zehaztu gabe dago\n";
 	
-	if(irudia != "" && irudia.match(".jpg") == null && irudia.match(".jpeg") == null && irudia.match(".png") == null && irudia.match(".bmp") == null && irudia.match(".gif") == null)
-		erroreak += '(hautazkoa) Irudiaren formatua okerra, irudiak ".jpg", ".jpeg", ".png", ".bmp", edo ".gif" luzapena eduki behar du\n';
+	if(irudia != "" && irudia.match(".jpg") == null && irudia.match(".jpeg") == null && irudia.match(".png") == null &&
+	irudia != "" && irudia.match(".JPG") == null && irudia.match(".JPEG") == null && irudia.match(".PNG") == null)
+		erroreak += '(hautazkoa) Irudiaren formatua okerra, irudiak ".jpg", ".jpeg", ".png", ".JPG", ".JPEG" edo ".PNG" luzapena eduki behar du\n';
 	
 	if(erroreak != "") {
 		alert(erroreak);

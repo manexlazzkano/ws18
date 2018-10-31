@@ -28,7 +28,6 @@
 			<nav class='main' id='n1' role='navigation'>
 				<span><a href='../layout.html'>Home</a></span>
 				<span><a href='/quizzes'>Quizzes</a></span>
-				<span><a href='showQuestions.php'>Show questions</a></span>
 				<span><a href='../credits.html'>Credits</a></span>
 				
 			</nav>
@@ -99,10 +98,17 @@
 			
 			if(!$linki) echo '<script> alert("Konexio errorea"); </script>';
 			else {
-				$linki->query("INSERT INTO users(eposta, deitura, pasahitza, argazkia) values ('$eposta', '$deitura', '$pasahitza', '$argazkia')");
 				
-				$linki = 0;
-				echo '<script> alert("Erregistratu zara"); </script>';
+				
+				$data = $linki->query("SELECT eposta FROM users WHERE eposta='".$eposta."'");			
+				if($data->num_rows != 0) echo '<script> alert("Eposta hori duen erabiltzailea jada erregistratuta dago"); </script>';
+				else {
+					$linki->query("INSERT INTO users(eposta, deitura, pasahitza, argazkia) values ('$eposta', '$deitura', '$pasahitza', '$argazkia')");
+					
+					$linki = 0;
+					echo '<script> alert("Erregistratu zara"); </script>';
+					header("location: ../layout.html");
+				}
 			}
 		}
 	}
