@@ -2,26 +2,32 @@
 <html>
 	<head>
 		<title>Show questions</title>
+		<script src="../js/jquery-3.2.1.js"></script>
+		<style>
+			#eremuak {font-weight: bold;}
+			td		 {text-align: center;}
+			
+			#logInfo				{float:right; margin-top: -5px;}
+			#deitura				{float:left; margin-right: 20px; margin-top: 8%;}
+			#argazkia				{float:right;}
+
+			ul		 {list-style: none; margin-left: 500px; float:right;}
+			ul li	 {display: inline;}
+		</style>
 	</head>
-	<style>
-		#eremuak {font-weight: bold;}
-		td		 {text-align: center;}
-		
-		ul		 {list-style: none; margin-left: 500px; float:right;}
-		ul li	 {display: inline;}
-	</style>
-	<script src="../js/jquery-3.2.1.js"></script>
-	<script src="../js/loginControl.js"></script>
 	
 	<body>
 		<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
 		<ul>
-			<li><a href='../layout.html'>Home</a></li>
-			<li><a href='/quizzes'>Quizzes</a></li>
-			
-			<li><a href='../addQuestion.html'>Add question</a></li>
-			<li><a href='../credits.html'>Credits</a></li>
+			<li><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Home</a></li>
+			<li><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Quizzes</a></li>			
+			<li><a href='<?php $id=$_GET['logged']; echo "addQuestion.php?logged=$id"; ?>'>Add question</a></li>
+			<li><a href='<?php $id=$_GET['logged']; echo "credits.php?logged=$id"; ?>'>Credits</a></li>
+			<li><a href='layout.php'>LogOut</a></li>
 		</ul>
+		<div id="logInfo">
+			<p id='deitura'></p>
+		</div>
 		<table border="1">
 			<tr id="eremuak">
 				<td> ID </td>
@@ -37,8 +43,39 @@
 			</tr>
 			
 			<?php
-				include("dbConfig.php");
-				$linki= mysqli_connect($zerbitzaria,$erabiltzailea,$gakoa,$db);
+				if (!empty($_GET['logged'])) {
+					echo '<script> $(".logeatuGabeak").hide(); </script>';
+					
+					include("dbConfig.php");
+					$linki= mysqli_connect($zerbitzaria,$erabiltzailea,$gakoa,$db);
+					
+					if(!$linki) echo '<script> alert("Konexio errorea"); </script>';
+					else {
+						
+						$id = $_GET['logged'];
+						$data = $linki->query("SELECT * FROM users WHERE ID='".$id."'");		
+						if($data->num_rows != 0) {		
+						
+							$erabiltzailea = $data->fetch_assoc();
+							if (!empty($erabiltzailea['argazkia'])) {
+								$deitura = $erabiltzailea['deitura'];
+								$argazkia = "<img id='argazkia' border='1' width='50' height='50' src='data:image/*;base64,".base64_encode($erabiltzailea['argazkia'])."'>";
+								echo '<script> $("#deitura").text("'.$deitura.'") </script>';
+								echo '<script> $("#logInfo").append("'.$argazkia.'") </script>';
+								
+							}
+							else {
+								$deitura = $erabiltzailea['deitura'];
+								echo '<script> $("#deitura").text(" '.$deitura.'") </script>';
+							}
+						}
+					}
+				}
+				else
+					echo '<script> $(".logeatuak").hide(); </script>';
+			
+				// include("dbConfig.php");
+				// $linki= mysqli_connect($zerbitzaria,$erabiltzailea,$gakoa,$db);
 				
 				if(!$linki) echo "Konexio errorea</br>";
 				else {			

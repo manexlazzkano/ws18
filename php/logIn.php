@@ -13,20 +13,19 @@
 			   media='only screen and (max-width: 480px)'
 			   href='../styles/smartphone.css' />
 		<script src="../js/jquery-3.2.1.js"></script>
-		<script src="../js/addImage.js"></script>
-		<script src="../js/removeImage.js"></script>
 	</head>
 	<body>
 		<div id='page-wrap'>
 			<header class='main' id='h1'>
+				<span><a href="signUp.php">SignUp</a> </span>
 				<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
 				<h2>Log in</h2>
 			</header>
 			
 			<nav class='main' id='n1' role='navigation'>
-				<span><a href='../layout.html'>Home</a></span>
-				<span><a href='/quizzes'>Quizzes</a></span>
-				<span><a href='../credits.html'>Credits</a></span>
+				<span><a href='layout.php'>Home</a></span>
+				<span><a href='layout.php'>Quizzes</a></span>
+				<span><a href='credits.php'>Credits</a></span>
 				
 			</nav>
 			
@@ -62,16 +61,14 @@
 		if(!$linki) echo '<script> alert("Konexio errorea"); </script>';
 		else {
 			
-			$data = $linki->query("SELECT eposta, pasahitza FROM users WHERE eposta='".$eposta."'");
-			
+			$data = $linki->query("SELECT * FROM users WHERE eposta='".$eposta."'");		
 			if($data->num_rows != 0) {		
 				$erabiltzailea = $data->fetch_assoc();
 				if($pasahitza != $erabiltzailea['pasahitza']) echo '<script> alert("Pasahitza okerra"); </script>';
 				else {
-					echo '<script> alert("Logeatu zara"); </script>';
-					$deitura = $erabiltzailea['deitura'];
-					$deitura = $erabiltzailea['deitura'];
-					header("location: ../layout.html?logged=true");
+					$id = $erabiltzailea['ID'];
+					header("location: layout.php?logged=$id");
+					die();
 				}
 			}
 			else echo '<script> alert("Erabiltzaile hori ez da existitzen"); </script>';

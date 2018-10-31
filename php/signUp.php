@@ -19,16 +19,15 @@
 	<body>
 		<div id='page-wrap'>
 			<header class='main' id='h1'>
-				<span class="right"><a href="/login">LogIn</a> </span>
-				<span class="right" style="display:none;"><a href="/logout">LogOut</a> </span>
+				<span class="right"><a href="logIn.php">LogIn</a> </span>
 				<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
 				<h2>Sign up</h2>
 			</header>
 			
 			<nav class='main' id='n1' role='navigation'>
-				<span><a href='../layout.html'>Home</a></span>
-				<span><a href='/quizzes'>Quizzes</a></span>
-				<span><a href='../credits.html'>Credits</a></span>
+				<span><a href='layout.php'>Home</a></span>
+				<span><a href='layout.php'>Quizzes</a></span>
+				<span><a href='credits.php'>Credits</a></span>
 				
 			</nav>
 			
@@ -107,7 +106,7 @@
 					
 					$linki = 0;
 					echo '<script> alert("Erregistratu zara"); </script>';
-					header("location: ../layout.html");
+					header("location: layout.php");
 				}
 			}
 		}
