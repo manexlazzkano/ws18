@@ -78,15 +78,16 @@
 		if (empty($pasahitzaErrepikatu)) $erroreak = $erroreak . "(*) Pasahitza errepikatu mesedez\\n";
 		else if ($pasahitza != $pasahitzaErrepikatu) $erroreak = $erroreak . "(*) Pasahitza eta errepikatutako pasahitza ez datoz bat\\n";
 		
-		if ($argazkiTamaina > 0) {
-			$contains_jpg = preg_match("/\.jpg$/", $argazkiIzena);
-			$contains_jpeg = preg_match("/\.jpeg$/", $argazkiIzena);
-			$contains_png = preg_match("/\.png$/", $argazkiIzena);
-			$contains_bmp = preg_match("/\.bmp$/", $argazkiIzena);
-			$contains_gif = preg_match("/\.gif$/", $argazkiIzena);
+		if ($irudiTamaina > 0) {
+			$contains_jpg = preg_match("/\.jpg$/", $irudiIzena);
+			$contains_jpeg = preg_match("/\.jpeg$/", $irudiIzena);
+			$contains_png = preg_match("/\.png$/", $irudiIzena);
+			$contains_JPG = preg_match("/\.JPG$/", $irudiIzena);
+			$contains_JPEG = preg_match("/\.JPEG$/", $irudiIzena);
+			$contains_PNG = preg_match("/\.PNG$/", $irudiIzena);
 		
-			if (!$contains_jpg && !$contains_jpeg && !$contains_png && !$contains_bmp && !$contains_gif)
-				$erroreak = $erroreak . "(hautazkoa) Irudiaren formatua okerra, irudiak '.jpg', '.jpeg', '.png', '.bmp', edo '.gif' luzapena eduki behar du\\n";
+			if (!$contains_jpg && !$contains_jpeg && !$contains_png && !$contains_JPG && !$contains_JPEG && !$contains_PNG)
+				$erroreak = $erroreak . "(hautazkoa) Irudiaren formatua okerra, irudiak '.jpg', '.jpeg', '.png', '.JPG', '.JPEG' edo '.PNG' luzapena eduki behar du";
 		}
 		
 		if (!empty($erroreak)) echo '<script> alert("'.$erroreak.'"); </script>';
@@ -102,11 +103,11 @@
 				$data = $linki->query("SELECT eposta FROM users WHERE eposta='".$eposta."'");			
 				if($data->num_rows != 0) echo '<script> alert("Eposta hori duen erabiltzailea jada erregistratuta dago"); </script>';
 				else {
-					$linki->query("INSERT INTO users(eposta, deitura, pasahitza, argazkia) values ('$eposta', '$deitura', '$pasahitza', '$argazkia')");
-					
+					$linki->query("INSERT INTO users(eposta, deitura, pasahitza, argazkia) values ('$eposta', '$deitura', '$pasahitza', '$argazkia')");					
 					$linki = 0;
-					echo '<script> alert("Erregistratu zara"); </script>';
-					header("location: layout.php");
+					
+					header("location: layout.php?registered=true");
+					die();
 				}
 			}
 		}

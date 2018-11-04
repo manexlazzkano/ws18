@@ -39,7 +39,7 @@
 			
 			<section class="main" id="s1">
 				<div>
-				<form id="formularioa" name="formularioa" action="addQuestion.php" method="post" enctype="multipart/form-data">
+				<form id="formularioa" name="formularioa" action="<?php echo "addQuestion.php?logged=$id"?>" method="post" enctype="multipart/form-data">
 					Egilearen eposta (*): <input type="text" class="input" id="eposta" name="eposta" size="50"/> </br></br>
 					Galderaren testua (*): <input type="text" class="input" id="galdera" name="galdera" size="110"/> </br></br>
 					Erantzun zuzena (*): <input type="text" class="input" id="erantzunZuzena" name="erantzunZuzena" size="110"/> </br></br>
