@@ -74,39 +74,7 @@
 
 <?php
 
-	if (!empty($_GET['logged'])) {
-		echo '<script> $(".logeatuGabeak").hide(); </script>';
-		
-		include("dbConfig.php");
-		$linki= mysqli_connect($zerbitzaria,$erabiltzailea,$gakoa,$db);
-		
-		if(!$linki) echo '<script> alert("Konexio errorea"); </script>';
-		else {
-			
-			$id = $_GET['logged'];
-			$data = $linki->query("SELECT * FROM users WHERE ID='".$id."'");		
-			if($data->num_rows != 0) {		
-				$erabiltzailea = $data->fetch_assoc();
-				
-				echo '<script> $("#eposta").val("'.$erabiltzailea["eposta"].'") </script>';
-				if (!empty($erabiltzailea['argazkia'])) {
-					$deitura = $erabiltzailea['deitura'];
-					$argazkia = "<img id='argazkia' border='1' width='50' height='50' src='data:image/*;base64,".base64_encode($erabiltzailea['argazkia'])."'>";
-					echo '<script> $("#deitura").text("'.$deitura.'") </script>';
-					echo '<script> $("#logInfo").append("'.$argazkia.'") </script>';
-					
-				}
-				else {
-					$deitura = $erabiltzailea['deitura'];
-					echo '<script> $("#deitura").text("'.$deitura.'") </script>';
-				}
-			}
-		}
-	}
-	else
-		echo '<script> $(".logeatuak").hide(); </script>';
-
-
+	include("userInfo.php");
 
 	if(isset($_POST['eposta'])) {
 		$eposta = trim($_POST['eposta']);
@@ -147,8 +115,8 @@
 
 		if (!empty($erroreak)) echo '<script> alert("'.$erroreak.'"); </script>';
 		else {				
-			// include("dbConfig.php");
-			// $linki= mysqli_connect($zerbitzaria,$erabiltzailea,$gakoa,$db);				
+			include("dbConfig.php");
+			$linki= mysqli_connect($zerbitzaria,$erabiltzailea,$gakoa,$db);				
 			if(!$linki) echo '<script> alert("Konexio errorea"); </script>';
 			else {
 				$linki->query("INSERT INTO questions(eposta, galderaTestua, erantzunZuzena, erantzunOkerra1, erantzunOkerra2, erantzunOkerra3, zailtasuna, arloa, irudia) 
@@ -156,8 +124,24 @@
 				
 				$linki = 0;
 				echo '<script> alert("Zure galdera datu basera gehitu da"); </script>';
+				
+				
+				
+				// $xml = simplexml_load_file("../xml/questions.xml");
+				// $galderaObjektua = $xml->addChild('galderaObjektua');
+				// $galderaObjektua->addAttribute('egilea', $eposta);
+				// $galderaObjektua->addAttribute('arloa', $arloa);
+				
+				// $galderaObjektua->addChild('galdera');
+				// $galderaObjektua->addChild('erantzunZuzena');
+					// $erantzunOkerrak = $galderaObjektua->addChild('erantzunOkerrak');
+						// $erantzunOkerrak->addChild('balioa', $erantzunOkerra1);
+						// $erantzunOkerrak->addChild('balioa', $erantzunOkerra2);
+						// $erantzunOkerrak->addChild('balioa', $erantzunOkerra3);
 			}
 		}
+		
+		
 	}
 	
 	
