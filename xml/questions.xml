@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItems>
+	<assessmentItem author="rosa001@ikasle.ehu.eus" subject="mikologia">
+		<itemBody> 
+			<p>Zein Amanita da jangarria?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Caesarea</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>Phalloides</value>
+			<value>Muscaria</value>
+			<value>Virosa</value>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem author="pwalker002@ikasle.ehu.eus" subject="Mendiak">
+		<itemBody>
+			<p>Zein da munduko mendirik altuena?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Everest</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>Klimanjaro</value>
+			<value>K2</value>
+			<value>Alpeak</value>
+		</incorrectResponses>
+	</assessmentItem>
+<assessmentItem author="pwalker002@ikasle.ehu.eus" subject="&lt;/value&gt;"><itemBody><p>&lt;/value&gt;</p></itemBody><correctResponse><value>&lt;/value&gt;</value></correctResponse><incorrectResponses><value>&lt;/value&gt;</value><value>&lt;/value&gt;</value><value>&lt;/value&gt;</value></incorrectResponses></assessmentItem><assessmentItem author="pwalker002@ikasle.ehu.eus" subject=""><itemBody><p>fjeriuy6843otjf`21ekr9087z-</p></itemBody><correctResponse><value/></correctResponse><incorrectResponses><value/><value/><value/></incorrectResponses></assessmentItem><assessmentItem author="pwalker002@ikasle.ehu.eus" subject="€"><itemBody><p>€</p></itemBody><correctResponse><value>€</value></correctResponse><incorrectResponses><value>€</value><value>€</value><value>€</value></incorrectResponses></assessmentItem></assessmentItems>

@@ -21,9 +21,7 @@
 		<span class='logeatuGabeak'><a href="logIn.php">LogIn</a> </span>
 		<span class='logeatuGabeak'><a href="signUp.php">SignUp</a> </span>
 		<span class='logeatuak'><a href="layout.php">LogOut</a> </span>
-		<div id="logInfo">
-			<p id='deitura'></p>
-		</div>
+		<div id="logInfo"></div>
 		<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
@@ -49,5 +47,5 @@
 	include("userInfo.php");
 		
 	if (!empty($_GET['registered']))
-		echo '<script> $("#s1").find("div").text("Zure erregistratzea arazorik gabe gauzatu da"); </script>';
+		echo '<script> $("#s1").find("div").text("Zure erregistratzea arazorik gabe gauzatu da, egin login saioa hasteko"); </script>';
 ?>

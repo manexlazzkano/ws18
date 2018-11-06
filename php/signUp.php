@@ -57,8 +57,8 @@
 
 <?php
 	if (isset($_POST['eposta'])) {
-		$eposta = $_POST['eposta'];				
-		$deitura = $_POST['deitura'];
+		$eposta = trim($_POST['eposta']);				
+		$deitura = $galdera = preg_replace('/\s\s+/', ' ', trim($_POST['deitura']));
 		$pasahitza = $_POST['pasahitza'];
 		$pasahitzaErrepikatu = $_POST['pasahitzaErrepikatu'];
 		
@@ -69,8 +69,12 @@
 		}
 		
 		$erroreak = "";
-		if (!preg_match("/^[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus$/", $eposta)) $erroreak = $erroreak . "(*) Eposta okerra\\n";
-		if (!preg_match("/^[A-Z][a-z]+\s[A-Z][a-z]+(\s[A-Z][a-z]+)?$/", $deitura)) $erroreak = $erroreak . "(*) Deitura zehaztu gabe dago\\n";
+		if (empty($eposta)) $erroreak = $erroreak . "(*) Eposta zehaztu gabe dago\\n";
+		else if (!preg_match("/^[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus$/", $eposta)) $erroreak = $erroreak . "(*) Eposta okerra\\n";
+		
+		if (empty($deitura)) $erroreak = $erroreak . "(*) Deitura zehaztu gabe dago\\n";
+		else if (!preg_match("/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+\s([a-záéíóúñ]+\s)*[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(\s([a-záéíóúñ]+\s)*[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)?$/", $deitura))
+			$erroreak = $erroreak . "(*) Deitura oker zehaztuta dago\\n";
 		
 		if (empty($pasahitza)) $erroreak = $erroreak . "(*) Pasahitza zehaztu gabe dago\\n";
 		else if (strlen($pasahitza) < 8) $erroreak = $erroreak . "(*) Pasahitza motzegia da, 8 ko luzera ez du gainditzen\\n";
@@ -106,7 +110,7 @@
 					$linki->query("INSERT INTO users(eposta, deitura, pasahitza, argazkia) values ('$eposta', '$deitura', '$pasahitza', '$argazkia')");					
 					$linki = 0;
 					
-					header("location: layout.php?registered=true");
+					echo "<script>location.href='layout.php?registered=1';</script>";
 					die();
 				}
 			}

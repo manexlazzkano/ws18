@@ -21,9 +21,7 @@
 		<span class='logeatuGabeak'><a href="signUp.php">SignUp</a> </span>
 		<span class='logeatuak'><a href="layout.php">LogOut</a> </span>
 		<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
-		<div id="logInfo">
-			<p id='deitura'></p>
-		</div>
+		<div id="logInfo"></div>
 		<h2>Credits</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>

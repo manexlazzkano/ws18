@@ -4,20 +4,22 @@
 		<title>Show questions</title>
 		<script src="../js/jquery-3.2.1.js"></script>
 		<style>
-			#eremuak {font-weight: bold;}
-			td		 {text-align: center;}
+			td		 				{text-align: center;}
 			
 			#logInfo				{float:right; margin-top: -5px;}
-			#deitura				{float:left; margin-right: 20px; margin-top: 8%;}
+			#loggedEmail			{float:left; margin-right: 20px; margin-top: 6%;}
 			#argazkia				{float:right;}
 
-			ul		 {list-style: none; margin-left: 500px; float:right;}
-			ul li	 {display: inline;}
+			#menua					{float: left; }
+			#backButton				{float: left;}
+			ul		 				{list-style: none; margin-left: 400px;}
+			ul li	 			    {display: inline;}
 		</style>
 	</head>
 	
 	<body>
 		<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
+		<div id="menua">
 		<ul>
 			<li><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Home</a></li>
 			<li><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Quizzes</a></li>			
@@ -25,21 +27,20 @@
 			<li><a href='<?php $id=$_GET['logged']; echo "credits.php?logged=$id"; ?>'>Credits</a></li>
 			<li><a href='layout.php'>LogOut</a></li>
 		</ul>
-		<div id="logInfo">
-			<p id='deitura'></p>
 		</div>
+		<div id="logInfo"></div>
 		<table border="1">
 			<tr id="eremuak">
-				<td> ID </td>
-				<td> Eposta </td>
-				<td> Galdera </td>
-				<td> Erantzun zuzena </td>
-				<td> 1. erantzun okerra </td>
-				<td> 2. erantzun okerra </td>
-				<td> 3. erantzun okerra </td>
-				<td> Zailtasuna </td>
-				<td> Arloa </td>
-				<td> Irudia </td>
+				<th> ID </th>
+				<th> Eposta </th>
+				<th> Galdera </th>
+				<th> Erantzun zuzena </th>
+				<th> 1. erantzun okerra </th>
+				<th> 2. erantzun okerra </th>
+				<th> 3. erantzun okerra </th>
+				<th> Zailtasuna </th>
+				<th> Arloa </th>
+				<th> Irudia </th>
 			</tr>
 			
 			<?php

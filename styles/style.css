@@ -20,12 +20,12 @@ nav span             	{ margin: 0px 10px 0px 0px;
 #backButton				{float:left}
 
 #logInfo				{float:right; margin-top: -5px;}
-#deitura				{float:left; margin-right: 20px; margin-top: 8%;}
+#loggedEmail			{float:left; margin-right: 20px; margin-top: 6%;}
 #argazkia				{float:right;}
 
 .irudiak				{border: 1px solid black;}
 #Ikaslea1				{float: left;}
-#Ikaslea2				{float: left;}
+#Ikaslea2				{float: right;}
 
 #Bidali					{width: 70px;}
 #Garbitu				{width: 70px;}

@@ -67,7 +67,7 @@
 				if($pasahitza != $erabiltzailea['pasahitza']) echo '<script> alert("Pasahitza okerra"); </script>';
 				else {
 					$id = $erabiltzailea['ID'];
-					header("location: layout.php?logged=$id");
+					echo "<script>location.href='layout.php?logged=$id';</script>";
 					die();
 				}
 			}

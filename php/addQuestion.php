@@ -23,9 +23,7 @@
 			<header class='main' id='h1'>
 				<span class="loginekoak"><a href="layout.php">LogOut</a> </span>
 				<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
-				<div id="logInfo">
-					<p id='deitura'></p>
-				</div>
+				<div id="logInfo"></div>
 				<h2>Add question</h2>
 			</header>
 			
@@ -33,6 +31,7 @@
 				<span><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Home</a></span>
 				<span><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Quizzes</a></span>
 				<span><a href='<?php $id=$_GET['logged']; echo "showQuestions.php?logged=$id"; ?>'>Show questions</a></span>
+				<span><a href='<?php $id=$_GET['logged']; echo "showXMLQuestions.php?logged=$id"; ?>'>Questions in XML</a></span>
 				<span><a href='<?php $id=$_GET['logged']; echo "credits.php?logged=$id"; ?>'>Credits</a></span>
 				
 			</nav>
@@ -75,9 +74,9 @@
 <?php
 
 	include("userInfo.php");
-
+	echo '<script> $("#eposta").attr("readonly", true) </script>';
+	
 	if(isset($_POST['eposta'])) {
-		$eposta = trim($_POST['eposta']);
 		$galdera = preg_replace('/\s\s+/', ' ', trim($_POST['galdera']));
 		$erantzunZuzena = $_POST['erantzunZuzena'];
 		$erantzunOkerra1 = $_POST['erantzunOkerra1'];
@@ -93,7 +92,6 @@
 
 		
 		$erroreak = "";
-		if (!preg_match("/^[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus$/", $eposta)) $erroreak = $erroreak . "(*) Eposta okerra\\n"; 
 		if (empty($galdera)) $erroreak = $erroreak . "(*) Galderaren testua zehaztu gabe dago\\n";
 		else if (strlen($galdera) < 10) $erroreak = $erroreak . "(*) Galderaren testua motzegia da, 10 ko luzera ez du gainditzen\\n";
 		if (empty($erantzunZuzena)) $erroreak = $erroreak . "(*) Erantzun zuzena zehaztu gabe dago\\n";
@@ -126,18 +124,43 @@
 				echo '<script> alert("Zure galdera datu basera gehitu da"); </script>';
 				
 				
+				/*
+				$assessmentItems = new SimpleXMLElement("../xml/questions.xml", null, true);
+					$assessmentItem = $assessmentItems->addChild('assessmentItem');
+					$assessmentItem->addAttribute('author', $eposta);
+					$assessmentItem->addAttribute('subject', $arloa);
+					
+					$assessmentItem->addChild('itemBody', $galdera);
+					$assessmentItem->addChild('correctResponse', $erantzunZuzena);
+						$incorrectResponses = $galderaObjektua->addChild('incorrectResponses');
+							$incorrectResponses->addChild('value', $erantzunOkerra1);
+							$incorrectResponses->addChild('value', $erantzunOkerra2);
+							$incorrectResponses->addChild('value', $erantzunOkerra3);
+							
+				$assessmentItems->asXML("../xml/questions.xml");*/
 				
-				// $xml = simplexml_load_file("../xml/questions.xml");
-				// $galderaObjektua = $xml->addChild('galderaObjektua');
-				// $galderaObjektua->addAttribute('egilea', $eposta);
-				// $galderaObjektua->addAttribute('arloa', $arloa);
+				if (!$assessmentItems = simplexml_load_file("../xml/questions.xml"))
+					echo '<script> alert("Errorea, ezin izan da XML fitxategia ireki"); </script>';
 				
-				// $galderaObjektua->addChild('galdera');
-				// $galderaObjektua->addChild('erantzunZuzena');
-					// $erantzunOkerrak = $galderaObjektua->addChild('erantzunOkerrak');
-						// $erantzunOkerrak->addChild('balioa', $erantzunOkerra1);
-						// $erantzunOkerrak->addChild('balioa', $erantzunOkerra2);
-						// $erantzunOkerrak->addChild('balioa', $erantzunOkerra3);
+				$i=0;
+				while($i < $galderaKop) $i++;
+				$assessmentItem = $assessmentItems->addChild('assessmentItem');
+					$assessmentItem->addAttribute('author', $eposta);
+					$assessmentItem->addAttribute('subject', $arloa);
+					
+					$itemBody = $assessmentItem->addChild('itemBody');
+						$itemBody->addChild('p', $galdera);
+						$correctResponse = $assessmentItem->addChild('correctResponse');
+							$correctResponse->addChild('value', $erantzunZuzena);
+						$incorrectResponses = $assessmentItem->addChild('incorrectResponses');
+							$incorrectResponses->addChild('value', $erantzunOkerra1);
+							$incorrectResponses->addChild('value', $erantzunOkerra2);
+							$incorrectResponses->addChild('value', $erantzunOkerra3);
+				if ($assessmentItems->asXML("../xml/questions.xml"))
+					echo '<script> alert("Zure galdera XML fitxategian ondo txertatu da"); </script>';
+				else
+					echo '<script> alert("Errorea, zure galdera ezin izan da XML fitxategian txertatu"); </script>';
+				
 			}
 		}
 		

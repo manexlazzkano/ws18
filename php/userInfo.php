@@ -16,15 +16,19 @@ if (!empty($_GET['logged'])) {
 			
 			echo '<script> $("#eposta").val("'.$erabiltzailea["eposta"].'") </script>';
 			if (!empty($erabiltzailea['argazkia'])) {
-				$deitura = $erabiltzailea['deitura'];
+				$eposta = $erabiltzailea['eposta'];
+				
+				$loggedEmail = "<p id='loggedEmail'>".$eposta."</p>";
 				$argazkia = "<img id='argazkia' border='1' width='50' height='50' src='data:image/*;base64,".base64_encode($erabiltzailea['argazkia'])."'>";
-				echo '<script> $("#deitura").text("'.$deitura.'") </script>';
+				echo '<script> $("#logInfo").append("'.$loggedEmail.'") </script>';
 				echo '<script> $("#logInfo").append("'.$argazkia.'") </script>';
 				
 			}
 			else {
-				$deitura = $erabiltzailea['deitura'];
-				echo '<script> $("#deitura").text("'.$deitura.'") </script>';
+				$eposta = $erabiltzailea['eposta'];
+				
+				$loggedEmail = "<p id='loggedEmail'>".$eposta."</p>";
+				echo '<script> $("#logInfo").append("'.$loggedEmail.'") </script>';
 			}
 		}
 	}
