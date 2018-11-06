@@ -65,7 +65,7 @@
 			</section>
 
 			<footer class='main' id='f1'>
-				<a href='https://github.com/manexlazzkano/ws18'>Link GITHUB</a>
+				<a href='https://github.com'>Link GITHUB</a>
 			</footer>
 		</div>	
 	</body>
