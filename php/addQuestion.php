@@ -123,22 +123,6 @@
 				$linki = 0;
 				echo '<script> alert("Zure galdera datu basera gehitu da"); </script>';
 				
-				
-				/*
-				$assessmentItems = new SimpleXMLElement("../xml/questions.xml", null, true);
-					$assessmentItem = $assessmentItems->addChild('assessmentItem');
-					$assessmentItem->addAttribute('author', $eposta);
-					$assessmentItem->addAttribute('subject', $arloa);
-					
-					$assessmentItem->addChild('itemBody', $galdera);
-					$assessmentItem->addChild('correctResponse', $erantzunZuzena);
-						$incorrectResponses = $galderaObjektua->addChild('incorrectResponses');
-							$incorrectResponses->addChild('value', $erantzunOkerra1);
-							$incorrectResponses->addChild('value', $erantzunOkerra2);
-							$incorrectResponses->addChild('value', $erantzunOkerra3);
-							
-				$assessmentItems->asXML("../xml/questions.xml");*/
-				
 				if (!$assessmentItems = simplexml_load_file("../xml/questions.xml"))
 					echo '<script> alert("Errorea, ezin izan da XML fitxategia ireki"); </script>';
 				
