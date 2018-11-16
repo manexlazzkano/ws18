@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="galderak.css"?>
 <assessmentItems>
 	<assessmentItem author="rosa001@ikasle.ehu.eus" subject="mikologia">
 		<itemBody> 
@@ -13,17 +14,4 @@
 			<value>Virosa</value>
 		</incorrectResponses>
 	</assessmentItem>
-	<assessmentItem author="pwalker002@ikasle.ehu.eus" subject="Mendiak">
-		<itemBody>
-			<p>Zein da munduko mendirik altuena?</p>
-		</itemBody>
-		<correctResponse>
-			<value>Everest</value>
-		</correctResponse>
-		<incorrectResponses>
-			<value>Klimanjaro</value>
-			<value>K2</value>
-			<value>Alpeak</value>
-		</incorrectResponses>
-	</assessmentItem>
-<assessmentItem author="pwalker002@ikasle.ehu.eus" subject="Kimika"><itemBody><p>Nola pizten da sua?</p></itemBody><correctResponse><value>Poxpoloarekin</value></correctResponse><incorrectResponses><value>Urarekin</value><value>Xaboiarekin</value><value>Harriarekin</value></incorrectResponses></assessmentItem></assessmentItems>
+</assessmentItems>

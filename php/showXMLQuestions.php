@@ -24,7 +24,7 @@
 		<ul>
 			<li><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Home</a></li>
 			<li><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Quizzes</a></li>			
-			<li><a href='<?php $id=$_GET['logged']; echo "addQuestion.php?logged=$id"; ?>'>Add question</a></li>
+			<li><a href='<?php $id=$_GET['logged']; echo "handlingQuizesAJAX.php?logged=$id"; ?>'>Handling quizzes</a></li>
 			<li><a href='<?php $id=$_GET['logged']; echo "showQuestions.php?logged=$id"; ?>'>Show questions</a></li>
 			<li><a href='<?php $id=$_GET['logged']; echo "credits.php?logged=$id"; ?>'>Credits</a></li>
 			<li><a href='layout.php'>LogOut</a></li>

@@ -23,7 +23,7 @@
 		<ul>
 			<li><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Home</a></li>
 			<li><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Quizzes</a></li>			
-			<li><a href='<?php $id=$_GET['logged']; echo "addQuestion.php?logged=$id"; ?>'>Add question</a></li>
+			<li><a href='<?php $id=$_GET['logged']; echo "handlingQuizesAJAX.php?logged=$id"; ?>'>Handling quizzes</a></li>
 			<li><a href='<?php $id=$_GET['logged']; echo "showXMLQuestions.php?logged=$id"; ?>'>Questions in XML</a></li>
 			<li><a href='<?php $id=$_GET['logged']; echo "credits.php?logged=$id"; ?>'>Credits</a></li>
 			<li><a href='layout.php'>LogOut</a></li>
@@ -67,9 +67,9 @@
 							echo "<td>".$galdera['zailtasuna']."</td>";
 							echo "<td>".$galdera['arloa']."</td>";
 							if($galdera['irudia'] != "")
-								echo "<td><img width='100' height='100' src='data:image/*;base64,".base64_encode($galdera['irudia'])."'></td>";
+								echo "<td><img style='display:block' width='100' height='100' src='data:image/*;base64,".base64_encode($galdera['irudia'])."'></td>";
 							else
-								echo "<td><img width='100' height='100' src='../images/x.png'></td>";
+								echo "<td><img style='display:block' width='100' height='100' src='../images/x.png'></td>";
 						echo "</tr>";
 					}
 				}
