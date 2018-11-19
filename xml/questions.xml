@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/css" href="galderak.css"?>
+<?xml version="1.0"?>
 <assessmentItems>
 	<assessmentItem author="rosa001@ikasle.ehu.eus" subject="mikologia">
 		<itemBody> 
@@ -14,4 +13,30 @@
 			<value>Virosa</value>
 		</incorrectResponses>
 	</assessmentItem>
-<assessmentItem author="pwalker002@ikasle.ehu.eus" subject="Marrazki Bizidunak"><itemBody><p>Noiz jaio zen Doraemon?</p></itemBody><correctResponse><value>2112n</value></correctResponse><incorrectResponses><value>2118n</value><value>2102n</value><value>2110ean</value></incorrectResponses></assessmentItem><assessmentItem author="pwalker002@ikasle.ehu.eus" subject="Marrazki Bizidunak"><itemBody><p>Noiz jaio zen Doraemon?</p></itemBody><correctResponse><value>2112n</value></correctResponse><incorrectResponses><value>2118n</value><value>2102n</value><value>2110ean</value></incorrectResponses></assessmentItem><assessmentItem author="pwalker002@ikasle.ehu.eus" subject="Dragoi Bola Z"><itemBody><p>Zein da Raditzen borroka indarra?</p></itemBody><correctResponse><value>1200 u</value></correctResponse><incorrectResponses><value>1500 u</value><value>2000 u</value><value>1800 u</value></incorrectResponses></assessmentItem></assessmentItems>
+	<assessmentItem author="rosa001@ikasle.ehu.eus" subject="mikologia">
+		<itemBody> 
+			<p>Onddoek zer dute kapela azpian?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Himenioa</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>Filamenduak</value>
+			<value>Eztenak</value>
+			<value>Hodiak</value>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem author="mafalda001@ikasle.ehu.eus" subject="mikologia">
+		<itemBody>
+			<p>Eranztuna du</p>
+		</itemBody>
+		<correctResponse>
+			<value>Galanpernak</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>Gibel urdinak</value>
+			<value>Esnegorriak</value>
+			<value>Errotariak</value>
+		</incorrectResponses>
+	</assessmentItem>
+</assessmentItems>
