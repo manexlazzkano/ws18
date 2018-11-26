@@ -25,7 +25,8 @@ $(function(){
 		
 		$("#divIrudi").append('<style id="styleIrudi">#n1,#s1{height:480px;}</style>');
 		$("#divIrudi").append('<img id="irudia" border="1" src="" width="100" height="100"><br><br>');
-		$("#irudia").attr("src",result);
+		
+		$("#irudia").attr("src", result);
 	}
 });
 });

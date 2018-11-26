@@ -21,12 +21,13 @@
 		<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
 		<div id="menua">
 		<ul>
-			<li><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Home</a></li>
-			<li><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Quizzes</a></li>			
-			<li><a href='<?php $id=$_GET['logged']; echo "handlingQuizesAJAX.php?logged=$id"; ?>'>Handling quizzes</a></li>
-			<li><a href='<?php $id=$_GET['logged']; echo "showXMLQuestions.php?logged=$id"; ?>'>Questions in XML</a></li>
-			<li><a href='<?php $id=$_GET['logged']; echo "credits.php?logged=$id"; ?>'>Credits</a></li>
-			<li><a href='layout.php'>LogOut</a></li>
+			<li><a href='<?php $id = $_GET['logged']; echo "layout.php?logged=$id"; ?>'>Home</a></li>
+			<li><a href='<?php $id = $_GET['logged']; echo "layout.php?logged=$id"; ?>'>Quizzes</a></li>			
+			<li><a href='<?php $id = $_GET['logged']; echo "handlingQuizesAJAX.php?logged=$id"; ?>'>Handling quizzes</a></li>
+			<li><a href='<?php $id = $_GET['logged']; echo "showXMLQuestions.php?logged=$id"; ?>'>Questions in XML</a></li>
+			<li><a href='<?php $id = $_GET['logged']; echo "getQuestionWZ.php?logged=$id"; ?>'>Get specific question</a></li>
+			<li><a href='<?php $id = $_GET['logged']; echo "credits.php?logged=$id"; ?>'>Credits</a></li>
+			<li><a href="<?php $id = $_GET['logged']; echo "showQuestions.php?logged=$id&removeUser=1"; ?>">LogOut</a></li>
 		</ul>
 		</div>
 		<div id="logInfo"></div>
@@ -46,6 +47,7 @@
 			
 			<?php
 				include("userInfo.php");
+				include("removeLoggedUser.php");
 			
 				include("dbConfig.php");
 				$linki= mysqli_connect($zerbitzaria,$erabiltzailea,$gakoa,$db);

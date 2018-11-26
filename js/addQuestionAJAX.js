@@ -32,16 +32,14 @@ $("#galderaGehitu").click(function(){
 
 		var datuak = $("#formularioa").serialize();
 		$.ajax({
+			async:true,
 			type:"POST",
 			url:"../php/addQuestion.php?logged="+id,
 			data:datuak,
-			success:function(){
-				$("#divFeedbackAjax").html("<strong>Zure galdera ondo gehitu da datu basera</strong><br>"
-											+"<strong>Zure galdera ondo gehitu da XML fitxategira</strong>");
-				datuakEskatu("addQuestionerako");
-			}
+			cache:false,
+			success:function(){ datuakErakutsi(true); },
+			error:function(){ $("#divFeedbackAjax").text("<strong>Datu basean ez dago zure galderarik</strong>"); }
 		});
-		return false;
 	}
 });
 });

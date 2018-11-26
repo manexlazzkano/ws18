@@ -50,6 +50,9 @@
 </html>
 
 <?php
+
+	header("Control-cache: no-store, no-cache, must-revalidate");
+
 	if (isset($_POST['eposta'])) {
 		
 		$eposta = $_POST['eposta'];				
@@ -67,7 +70,26 @@
 				if($pasahitza != $erabiltzailea['pasahitza']) echo '<script> alert("Pasahitza okerra"); </script>';
 				else {
 					$id = $erabiltzailea['ID'];
-					echo "<script>location.href='layout.php?logged=$id';</script>";
+									
+					$aurkitua = false;
+					$loggedUsers = simplexml_load_file("../xml/counter.xml");
+					$numberOfUsers = count($loggedUsers->loggedUser);
+					
+					for ($i=0; $i < $numberOfUsers && !$aurkitua; $i++) {
+						if($loggedUsers->loggedUser[$i] == $eposta) {
+							$aurkitua = true;
+							break;
+						}
+						$i++;
+					}
+					
+					if(!$aurkitua) {
+						$loggedUsers->addChild('loggedUser', $eposta);
+						$loggedUsers->loggedUser->addAttribute('id', $id);
+						$loggedUsers->asXML("../xml/counter.xml");
+					}
+					
+					echo "<script> window.location.href='layout.php?logged=$id'; </script>";
 					die();
 				}
 			}
