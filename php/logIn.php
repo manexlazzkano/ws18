@@ -82,7 +82,7 @@
 						}
 						$i++;
 					}
-					echo '<script> alert("'.$id.'") </script>';
+					
 					if(!$aurkitua) {
 						$newLoggedUser = $loggedUsers->addChild('loggedUser', $eposta);
 						$newLoggedUser->addAttribute('id', $id);
