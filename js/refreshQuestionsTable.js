@@ -26,7 +26,7 @@ function refreskatu() {
 			var loggedEmail = document.getElementById("loggedEmail").innerText;
 			
 			var loggedUserHasQuestions = false;
-			var height = 520;			
+			var height = 560;			
 			var irudia = $("#fitxategia").val();
 		
 			var extraHeight = 0;
@@ -49,18 +49,27 @@ function refreskatu() {
 			}
 			taula += "</table>";
 			
+			var xhro = new XMLHttpRequest();
+			xhro.open('GET', '../xml/counter.xml', false);
+			xhro.send();
+			
+			if (xhro.readyState == 4 && xhro.status == 200 && xhro.responseXML != null) {
+				var xmlData = xhro.responseXML;	
+				var loggedUsers = xmlData.getElementsByTagName("loggedUser");
+				document.getElementById("divFeedbackAjax").innerHTML = "<strong>Logeatuta dauden erabiltzaile kopurua: " +loggedUsers.length +"</strong><br><br>";
+			}
+			
 			if (loggedUserHasQuestions) {	
 				document.getElementById("n1").style.height = height +extraHeight +"px";
 				document.getElementById("s1").style.height = height +extraHeight +"px";
 				
-				document.getElementById("divFeedbackAjax").innerHTML = "";
 				document.getElementById("divFeedbackAjax").innerHTML += "<strong>Nire galderak / Galderak guztira DB: " +nireGalderak +" / " +galderakGuztira +"</strong>";	
 				document.getElementById("divTaulaAjax").innerHTML = taula;
 			}
 			else {
-				document.getElementById("n1").style.height = 460 +extraHeight +"px";
-				document.getElementById("s1").style.height = 460 +extraHeight +"px";
-				document.getElementById("divFeedbackAjax").innerHTML = "<strong>Datu basean ez dago zure galderarik</strong>";
+				document.getElementById("n1").style.height = 500 +extraHeight +"px";
+				document.getElementById("s1").style.height = 500 +extraHeight +"px";
+				document.getElementById("divFeedbackAjax").innerHTML += "<strong>Datu basean ez dago zure galderarik</strong>";
 			}
 			}
 		}

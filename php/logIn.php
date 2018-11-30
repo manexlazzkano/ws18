@@ -82,10 +82,10 @@
 						}
 						$i++;
 					}
-					
+					echo '<script> alert("'.$id.'") </script>';
 					if(!$aurkitua) {
-						$loggedUsers->addChild('loggedUser', $eposta);
-						$loggedUsers->loggedUser->addAttribute('id', $id);
+						$newLoggedUser = $loggedUsers->addChild('loggedUser', $eposta);
+						$newLoggedUser->addAttribute('id', $id);
 						$loggedUsers->asXML("../xml/counter.xml");
 					}
 					
