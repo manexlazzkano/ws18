@@ -1,3 +1,12 @@
+<?php
+	header("Control-cache: no-store, no-cache, must-revalidate");
+	session_start();
+	if(!isset($_SESSION['id'])) {
+		echo '<script> javascript:history.go(1); </script>';
+		die();
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,20 +32,21 @@
 	<body>
 		<div id='page-wrap'>
 			<header class='main' id='h1'>
-				<span class="loginekoak"><a href="<?php $id=$_GET['logged']; echo "handlingQuizesAJAX.php?logged=$id&removeUser=1"; ?>">LogOut</a> </span>
+				<span class="loginekoak"><a href="logOut.php">LogOut</a> </span>
 				<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
 				<div id="logInfo"></div>
 				<h2>Handling quizzes</h2>
 			</header>
 			
 			<nav class='main' id='n1' role='navigation'>
-				<span><a href='<?php echo "layout.php?logged=$id"; ?>'>Home</a></span>
-				<span><a href='<?php echo "layout.php?logged=$id"; ?>'>Quizzes</a></span>
-				<span><a href='<?php echo "showQuestions.php?logged=$id"; ?>'>Show questions</a></span>
-				<span><a href='<?php echo "showXMLQuestions.php?logged=$id"; ?>'>Questions in XML</a></span>
-				<span class='logeatuak'><a href='<?php echo "getQuestionWZ.php?logged=$id"; ?>'>Get specific question</a></span>
-				<span><a href='<?php echo "credits.php?logged=$id"; ?>'>Credits</a></span>
-				
+				<span><a href='layout.php'>Home</a></span>
+				<span><a href='credits.php'>Credits</a></span>
+				<span><a href='layout.php'>Quizzes</a></span>
+				<br><br>
+				<span><a href='showQuestions.php'>Show questions</a></span>
+				<span><a href='showXMLQuestions.php'>Questions in XML</a></span>
+				<br><br>
+				<span><a href='handlingAccounts.php'>Handling accounts</a></span>			
 			</nav>
 			
 			<section class="main" id="s1">
@@ -76,7 +86,6 @@
 	</body>
 </html>
 
-<?php 
+<?php
 	include("userInfo.php");
-	include("removeLoggedUser.php");
 ?>

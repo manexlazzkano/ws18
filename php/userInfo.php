@@ -1,6 +1,7 @@
 <?php
+	$id = $_SESSION['id'];
 
-if (!empty($_GET['logged'])) {
+if ($id != "") {
 	
 	echo '<script> $(".logeatuGabeak").hide(); </script>';
 	
@@ -10,7 +11,6 @@ if (!empty($_GET['logged'])) {
 	if(!$linki) echo '<script> alert("Konexio errorea"); </script>';
 	else {
 		
-		$id = $_GET['logged'];
 		$data = $linki->query("SELECT * FROM users WHERE ID='".$id."'");		
 		if($data->num_rows != 0) {		
 			$erabiltzailea = $data->fetch_assoc();
@@ -29,5 +29,4 @@ if (!empty($_GET['logged'])) {
 }
 else
 	echo '<script> $(".logeatuak").hide(); </script>';
-
 ?>

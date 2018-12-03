@@ -1,3 +1,12 @@
+<?php
+	header("Control-cache: no-store, no-cache, must-revalidate");
+	session_start();
+	if(!isset($_SESSION['id'])) {
+		echo '<script> javascript:history.go(1); </script>';
+		die();
+	}
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -19,28 +28,30 @@
   <body>
   <div id='page-wrap'>
 	<header class='main' id='h1'>
-		<span class='logeatuak'><a href="<?php $id=$_GET['logged']; echo "layout.php?logged=$id&removeUser=1"; ?>">LogOut</a> </span>
+		<span class='logeatuak'><a href="logOut.php">LogOut</a> </span>
 		<div id="logInfo"></div>
 		<h2>Get specific question</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
-		<span><a href='<?php if (!empty($_GET['logged'])) {echo "layout.php?logged=$id";} else {echo "layout.php";} ?>'>Home</a></span>
-		<span><a href='<?php if (!empty($_GET['logged'])) {echo "layout.php?logged=$id";} else {echo "layout.php";} ?>'>Quizzes</a></span>
-		<span class='logeatuak'><a href='<?php echo "handlingQuizesAJAX.php?logged=$id"; ?>'>Handling quizzes</a></span>
-		<span class='logeatuak'><a href='<?php echo "showQuestions.php?logged=$id"; ?>'>Show questions</a></span>
-		<span class='logeatuak'><a href='<?php echo "showXMLQuestions.php?logged=$id"; ?>'>Questions in XML</a></span>
-		<span><a href='<?php if (!empty($_GET['logged'])) {echo "credits.php?logged=$id";} else {echo "credits.php";} ?>'>Credits</a></span>
+		<span><a href='layout.php'>Home</a></span>
+		<span><a href='credits.php'>Credits</a></span>
+		<span><a href='layout.php'>Quizzes</a></span>
+		<br><br>
+		<span><a href='showQuestions.php'>Show questions</a></span>
+		<span><a href='showXMLQuestions.php'>Questions in XML</a></span>
+		<br><br>
+		<span><a href='handlingQuizes.php'>Handling quizzes</a></span>
+		<span><a href='handlingAccounts.php'>Handling accounts</a></span>
 	</nav>
     <section class="main" id="s1">
 		<div>
-		<form action='<?php $id = $_GET['logged']; echo "getQuestionWZ.php?logged=$id"; ?>' method="post" >
+		<form action='getQuestionWZ.php' method="post" >
 			Galderaren identifikadorea (ID): &nbsp <input type="text" id="ident" name="ident" size="5"/> </br></br>
 			<input type="submit" value="   Erakutsi galdera   "/>
 		</form>
 		
 			<?php
 				include("userInfo.php");
-				include("removeLoggedUser.php");
 				
 				if(isset($_POST['ident'])) {
 					

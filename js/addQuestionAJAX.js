@@ -27,14 +27,11 @@ $("#galderaGehitu").click(function(){
 	
 	if(erroreak != "") alert(erroreak);
 	else {
-	
-		var id = window.location.href.substr(56);
-
 		var datuak = $("#formularioa").serialize();
 		$.ajax({
 			async:true,
 			type:"POST",
-			url:"../php/addQuestion.php?logged="+id,
+			url:"../php/addQuestion.php",
 			data:datuak,
 			cache:false,
 			success:function(){ datuakErakutsi(true); },

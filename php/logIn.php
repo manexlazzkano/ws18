@@ -1,3 +1,11 @@
+<?php
+	header("Control-cache: no-store, no-cache, must-revalidate");
+	session_start();
+	if(isset($_SESSION['id'])) {
+		echo '<script> javascript:history.go(1); </script>';
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -24,9 +32,8 @@
 			
 			<nav class='main' id='n1' role='navigation'>
 				<span><a href='layout.php'>Home</a></span>
-				<span><a href='layout.php'>Quizzes</a></span>
 				<span><a href='credits.php'>Credits</a></span>
-				
+				<span><a href='layout.php'>Quizzes</a></span>				
 			</nav>
 			
 			<section class="main" id="s1">
@@ -38,8 +45,9 @@
 					<input type="submit" name="saioaHasi" value="   Saioa hasi   "/>
 					<input type="reset" name="garbitu" value="     Garbitu     "/>
 				</form>
-				</div>
-				
+				<br><br><br>
+				<input type="button" id="pasahitzaAhaztu" value="   Pasahitza ahaztu zait   "/>
+				</div>		
 			</section>
 
 			<footer class='main' id='f1'>
@@ -50,9 +58,6 @@
 </html>
 
 <?php
-
-	header("Control-cache: no-store, no-cache, must-revalidate");
-
 	if (isset($_POST['eposta'])) {
 		
 		$eposta = $_POST['eposta'];				
@@ -64,34 +69,14 @@
 		if(!$linki) echo '<script> alert("Konexio errorea"); </script>';
 		else {
 			
-			$data = $linki->query("SELECT * FROM users WHERE eposta='".$eposta."'");		
-			if($data->num_rows != 0) {		
+			$data = $linki->query("SELECT * FROM users WHERE eposta='".$eposta."'");
+			
+			if($data->num_rows != 0) {
 				$erabiltzailea = $data->fetch_assoc();
-				if($pasahitza != $erabiltzailea['pasahitza']) echo '<script> alert("Pasahitza okerra"); </script>';
-				else {
-					$id = $erabiltzailea['ID'];
-									
-					$aurkitua = false;
-					$loggedUsers = simplexml_load_file("../xml/counter.xml");
-					$numberOfUsers = count($loggedUsers->loggedUser);
-					
-					for ($i=0; $i < $numberOfUsers && !$aurkitua; $i++) {
-						if($loggedUsers->loggedUser[$i] == $eposta) {
-							$aurkitua = true;
-							break;
-						}
-						$i++;
-					}
-					
-					if(!$aurkitua) {
-						$newLoggedUser = $loggedUsers->addChild('loggedUser', $eposta);
-						$newLoggedUser->addAttribute('id', $id);
-						$loggedUsers->asXML("../xml/counter.xml");
-					}
-					
-					echo "<script> window.location.href='layout.php?logged=$id'; </script>";
-					die();
-				}
+				$hashedPassword = $erabiltzailea['pasahitza'];
+				
+				if (!password_verify($pasahitza, $hashedPassword)) echo '<script> alert("Pasahitza okerra"); </script>';
+				else include("storeLoginInfo.php");			
 			}
 			else echo '<script> alert("Erabiltzaile hori ez da existitzen"); </script>';
 		}

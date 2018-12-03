@@ -1,60 +1,90 @@
+<?php
+	header("Control-cache: no-store, no-cache, must-revalidate");
+	session_start();
+	if(!isset($_SESSION['id'])) {
+		echo '<script> javascript:history.go(1); </script>';
+		die();
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Show questions</title>
+		<meta name="eduki-mota" content="text/html;" http-equiv="content-type" charset="utf-8">
+		<title>Questions in XML</title>
+		<link rel='stylesheet' type='text/css' href='../styles/style.css' />
+		<link rel='stylesheet' 
+			   type='text/css' 
+			   media='only screen and (min-width: 530px) and (min-device-width: 481px)'
+			   href='../styles/wide.css' />
+		<link rel='stylesheet' 
+			   type='text/css' 
+			   media='only screen and (max-width: 480px)'
+			   href='../styles/smartphone.css' />
 		<script src="../js/jquery-3.2.1.js"></script>
-		<style>
-			td		 				{text-align: center;}
-			
-			#logInfo				{float:right; margin-top: -45px;}
-			#loggedEmail			{float:left; margin-right: 20px; margin-top: 6%;}
-			#argazkia				{float:right;}
-
-			#menua					{float: center;}
-			#backButton				{float: left;}
-			ul		 				{list-style: none; margin-left: 400px;}
-			ul li	 			    {display: inline;}
-			table					{margin-left: 400px;}
-		</style>
+		
 	</head>
-	
 	<body>
-		<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
-		<div id="menua">
-		<ul>
-			<li><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Home</a></li>
-			<li><a href='<?php $id=$_GET['logged']; echo "layout.php?logged=$id"; ?>'>Quizzes</a></li>			
-			<li><a href='<?php $id=$_GET['logged']; echo "handlingQuizesAJAX.php?logged=$id"; ?>'>Handling quizzes</a></li>
-			<li><a href='<?php $id=$_GET['logged']; echo "showQuestions.php?logged=$id"; ?>'>Show questions</a></li>
-			<li><a href='<?php $id=$_GET['logged']; echo "getQuestionWZ.php?logged=$id"; ?>'>Get specific question</a></li>
-			<li><a href='<?php $id=$_GET['logged']; echo "credits.php?logged=$id"; ?>'>Credits</a></li>
-			<li><a href="<?php $id=$_GET['logged']; echo "showXMLQuestions.php?logged=$id&removeUser=1"; ?>">LogOut</a></li>
-		</ul>
-		</div>
-		<div id="logInfo"></div>
-		<table border="1">
-			<tr>
-				<th> Egilea </th>
-				<th> Enuntziatua </th>
-				<th> Erantzun zuzena </th>
-			</tr>
+		<div id='page-wrap'>
+			<header class='main' id='h1'>
+				<span class="loginekoak"><a href="logOut.php">LogOut</a> </span>
+				<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
+				<div id="logInfo"></div>
+				<h2>Questions in XML</h2>
+			</header>
 			
-			<?php
-				header("Control-cache: no-store, no-cache, must-revalidate");
+			<nav class='main' id='n1' role='navigation'>
+				<span><a href='layout.php'>Home</a></span>
+				<span><a href='credits.php'>Credits</a></span>
+				<span><a href='layout.php'>Quizzes</a></span>
+				<br><br>
+				<span><a href='showQuestions.php'>Show questions</a></span>
+				<span><a href='showXMLQuestions.php'>Questions in XML</a></span>
+				<br><br>
+				<span><a href='handlingQuizes.php'>Handling quizzes</a></span>
+				<span><a href='handlingAccounts.php'>Handling accounts</a></span>		
+			</nav>
 			
-				include("userInfo.php");
-				include("removeLoggedUser.php");
-			
-				$galderak = new SimpleXMLElement('../xml/questions.xml', null, true);
-				foreach($galderak->assessmentItem as $galdera) {
-					echo '<tr>';
-						echo '<td>' .$galdera['author']. '</td>';
-						echo '<td>' .$galdera->itemBody->p. '</td>';
-						echo '<td>' .$galdera->correctResponse->value. '</td>';				
-					echo '</tr>';
-				}
-			?>
+			<section class="main" id="s1">
+			<div>
+				<style>
+					th, td {text-align: center;}
+				</style>
 				
-		</table>
+				<table border="1">
+				<tr>
+					<th> Egilea </th>
+					<th> Enuntziatua </th>
+					<th> Erantzun zuzena </th>
+				</tr>
+				
+				<?php		
+					$height = 240;
+					$galderak = new SimpleXMLElement('../xml/questions.xml', null, true);
+					foreach($galderak->assessmentItem as $galdera) {
+						echo '<tr>';
+							echo '<td>' .$galdera['author']. '</td>';
+							echo '<td>' .$galdera->itemBody->p. '</td>';
+							echo '<td>' .$galdera->correctResponse->value. '</td>';				
+						echo '</tr>';
+						$height += 50;
+					}
+					echo '<style> #n1,#s1 {height: '.$height.'px;}; </style>';
+				?>
+				</table>
+			</div>
+			<div id="divFeedbackAjax"></div>
+			<div id="divTaulaAjax"></div>
+				
+			</section>
+
+			<footer class='main' id='f1'>
+				<a href='https://github.com'>Link GITHUB</a>
+			</footer>
+		</div>	
 	</body>
 </html>
+
+<?php
+	include("userInfo.php");
+?>

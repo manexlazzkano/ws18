@@ -1,5 +1,6 @@
 <?php
 	header("Control-cache: no-store, no-cache, must-revalidate");
+	session_start();
 	
 	include("userInfo.php");
 		

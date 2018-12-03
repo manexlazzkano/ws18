@@ -1,3 +1,11 @@
+<?php
+	header("Control-cache: no-store, no-cache, must-revalidate");
+	session_start();
+	if(isset($_SESSION['id'])) {
+		echo '<script> javascript:history.go(1); </script>';
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -26,9 +34,8 @@
 			
 			<nav class='main' id='n1' role='navigation'>
 				<span><a href='layout.php'>Home</a></span>
-				<span><a href='layout.php'>Quizzes</a></span>
 				<span><a href='credits.php'>Credits</a></span>
-				
+				<span><a href='layout.php'>Quizzes</a></span>
 			</nav>
 			
 			<section class="main" id="s1">
@@ -56,8 +63,6 @@
 </html>
 
 <?php
-	header("Control-cache: no-store, no-cache, must-revalidate");
-
 	if (isset($_POST['eposta'])) {
 		$eposta = trim($_POST['eposta']);				
 		$deitura = $galdera = preg_replace('/\s\s+/', ' ', trim($_POST['deitura']));
@@ -103,39 +108,9 @@
 			
 			if(!$linki) echo '<script> alert("Konexio errorea"); </script>';
 			else {
-				
 				$data = $linki->query("SELECT eposta FROM users WHERE eposta='".$eposta."'");			
 				if($data->num_rows != 0) echo '<script> alert("Eposta hori duen erabiltzailea jada erregistratuta dago"); </script>';
-				else {				
-					/*** SOAP ***/
-					require_once('../lib/nusoap.php');
-					require_once('../lib/class.wsdlcache.php');
-					
-					$soapclient = new nusoap_client('http://ehusw.es/rosa/webZerbitzuak/egiaztatuMatrikula.php?wsdl', true);					
-					$matrikulaturik = $soapclient->call('egiaztatuE', array('x'=>$eposta));
-					
-					$soapclient2 = new nusoap_client('http://localhost/ws18/wz/egiaztatuPasahitza.php?wsdl', true);
-					$pasahitzaBaliozkoa = $soapclient2->call('baliozkatu', array('x'=>$pasahitza, 'y'=>1010));
-					
-					$erroreak = "";
-					
-					if($matrikulaturik == "BAI" && $pasahitzaBaliozkoa == "BALIOZKOA") {
-						$linki->query("INSERT INTO users(eposta, deitura, pasahitza, argazkia) values ('$eposta', '$deitura', '$pasahitza', '$argazkia')");
-						echo "<script>location.href='layout.php?registered=1';</script>";
-						die();
-					}
-					else if($matrikulaturik == "EZ") {
-						$erroreak = $erroreak ."Eposta hori duen erabiltzailea ez dago WS n matrikulaturik\\n";
-					}
-					else if($pasahitzaBaliozkoa == "BALIOGABEA") {
-						$erroreak = $erroreak ."Zure pasahitza proposamena ez da baliozkoa\\n";
-					}
-					else if($pasahitzaBaliozkoa == "ZERBITZURIK GABE") {
-						$erroreak = $erroreak ."Une honetan pasahitzak balioztatzeko web zerbitzurik ez dago\\n";
-					}
-
-					echo '<script> alert("'.$erroreak.'"); </script>';
-				}
+				else include("verifyUser&PasswordWZ.php");
 			}
 		}
 	}

@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<?php
+	session_start();
+?>
+
+<!DOCTYPE html>
 <html>
   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
@@ -20,18 +24,21 @@
 	<header class='main' id='h1'>
 		<span class='logeatuGabeak'><a href="logIn.php">LogIn</a> </span>
 		<span class='logeatuGabeak'><a href="signUp.php">SignUp</a> </span>
-		<span class='logeatuak'><a href="<?php $id=$_GET['logged']; echo "layout.php?logged=$id&removeUser=1"; ?>">LogOut</a> </span>
+		<span class='logeatuak'><a href="logOut.php">LogOut</a> </span>
 		<div id="logInfo"></div>
 		<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
-		<span><a href='<?php if (!empty($_GET['logged'])) {echo "layout.php?logged=$id";} else {echo "layout.php";} ?>'>Home</a></span>
-		<span><a href='<?php if (!empty($_GET['logged'])) {echo "layout.php?logged=$id";} else {echo "layout.php";} ?>'>Quizzes</a></span>
-		<span class='logeatuak'><a href='<?php echo "handlingQuizesAJAX.php?logged=$id"; ?>'>Handling quizzes</a></span>
-		<span class='logeatuak'><a href='<?php echo "showQuestions.php?logged=$id"; ?>'>Show questions</a></span>
-		<span class='logeatuak'><a href='<?php echo "showXMLQuestions.php?logged=$id"; ?>'>Questions in XML</a></span>
-		<span class='logeatuak'><a href='<?php echo "getQuestionWZ.php?logged=$id"; ?>'>Get specific question</a></span>
-		<span><a href='<?php if (!empty($_GET['logged'])) {echo "credits.php?logged=$id";} else {echo "credits.php";} ?>'>Credits</a></span>
+		<span><a href='layout.php'>Home</a></span>
+		<span><a href='credits.php'>Credits</a></span>
+		<span><a href='layout.php'>Quizzes</a></span>
+		<br><br>
+		<span class='logeatuak'><a href='getQuestionWZ.php'>Get question</a></span>
+		<span class='logeatuak'><a href='showQuestions.php'>Show questions</a></span>
+		<span class='logeatuak'><a href='showXMLQuestions.php'>Questions in XML</a></span>
+		<br><br>
+		<span class='logeatuak'><a href='handlingQuizes.php'>Handling quizzes</a></span>
+		<span class='logeatuak'><a href='handlingAccounts.php'>Handling accounts</a></span>
 	</nav>
     <section class="main" id="s1">
 		<div>
@@ -46,9 +53,11 @@
 </html>
 
 <?php
-	include("userInfo.php");
-	include("removeLoggedUser.php");
-		
-	if (!empty($_GET['registered']))
+	include("userInfo.php");		
+	if ($_SESSION['register'] == 1) {
 		echo '<script> $("#s1").find("div").text("Zure erregistratzea arazorik gabe gauzatu da, egin login saioa hasteko"); </script>';
+		
+		session_unset();
+		session_destroy();
+	}
 ?>

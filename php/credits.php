@@ -1,3 +1,7 @@
+<?php
+	session_start();
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -19,18 +23,21 @@
 	<header class='main' id='h1'>
 		<span class='logeatuGabeak'><a href="logIn.php">LogIn</a> </span>
 		<span class='logeatuGabeak'><a href="signUp.php">SignUp</a> </span>
-		<span class='logeatuak'><a href="<?php $id=$_GET['logged']; echo "credits.php?logged=$id&removeUser=1"; ?>">LogOut</a> </span>
+		<span class='logeatuak'><a href="logOut.php">LogOut</a> </span>
 		<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
 		<div id="logInfo"></div>
 		<h2>Credits</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
-		<span><a href='<?php if (!empty($_GET['logged'])) {echo "layout.php?logged=$id";} else {echo "layout.php";} ?>'>Home</a></span>
-		<span><a href='<?php if (!empty($_GET['logged'])) {echo "layout.php?logged=$id";} else {echo "layout.php";} ?>'>Quizzes</a></span>
-		<span class='logeatuak'><a href='<?php echo "handlingQuizesAJAX.php?logged=$id"; ?>'>Handling quizzes</a></span>
-		<span class='logeatuak'><a href='<?php echo "showQuestions.php?logged=$id"; ?>'>Show questions</a></span>
-		<span class='logeatuak'><a href='<?php echo "showXMLQuestions.php?logged=$id"; ?>'>Questions in XML</a></span>
-		<span class='logeatuak'><a href='<?php echo "getQuestionWZ.php?logged=$id"; ?>'>Get specific question</a></span>
+		<span><a href='layout.php'>Home</a></span>
+		<span><a href='layout.php'>Quizzes</a></span>
+		<br><br>
+		<span class='logeatuak'><a href='getQuestionWZ.php'>Get question</a></span>
+		<span class='logeatuak'><a href='showQuestions.php'>Show questions</a></span>
+		<span class='logeatuak'><a href='showXMLQuestions.php'>Questions in XML</a></span>
+		<br><br>
+		<span class='logeatuak'><a href='handlingQuizes.php'>Handling quizzes</a></span>
+		<span class='logeatuak'><a href='handlingAccounts.php'>Handling accounts</a></span>
 	</nav>
     <section class="main" id="s1">
 		<div id="Ikaslea1">
@@ -60,5 +67,4 @@
 
 <?php
 	include("userInfo.php");
-	include("removeLoggedUser.php");
 ?>
