@@ -31,7 +31,7 @@ $("#galderaGehitu").click(function(){
 		$.ajax({
 			async:true,
 			type:"POST",
-			url:"../php/addQuestion.php",
+			url:"addQuestion.php",
 			data:datuak,
 			cache:false,
 			success:function(){ datuakErakutsi(true); },

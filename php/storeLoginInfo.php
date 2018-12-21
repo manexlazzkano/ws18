@@ -1,4 +1,9 @@
 <?php
+	if(!isset($_SESSION['sid'])) {
+		echo "<script> window.location.href='layout.php'; </script>";
+		die();
+	}
+
 	$id = $erabiltzailea['ID'];
 	$_SESSION['id'] = $id;
 
@@ -14,11 +19,7 @@
 	/*xxx*/		$numberOfUsers = count($loggedUsers->loggedUser);								/*xxx*/
 	/*xxx*/																						/*xxx*/
 	/*xxx*/		for ($i=0; $i < $numberOfUsers && !$aurkitua; $i++) {							/*xxx*/
-	/*xxx*/			if($loggedUsers->loggedUser[$i] == $eposta) {								/*xxx*/
-	/*xxx*/				$aurkitua = true;														/*xxx*/
-	/*xxx*/				break;																	/*xxx*/
-	/*xxx*/			}																			/*xxx*/
-	/*xxx*/			$i++;																		/*xxx*/
+	/*xxx*/			if($loggedUsers->loggedUser[$i] == $eposta) $aurkitua = true;				/*xxx*/
 	/*xxx*/		}																				/*xxx*/
 	/*xxx*/																						/*xxx*/
 	/*xxx*/		if(!$aurkitua) {																/*xxx*/

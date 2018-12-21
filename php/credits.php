@@ -1,6 +1,4 @@
-<?php
-	session_start();
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html>
@@ -21,23 +19,32 @@
   <body>
   <div id='page-wrap'>
 	<header class='main' id='h1'>
-		<span class='logeatuGabeak'><a href="logIn.php">LogIn</a> </span>
-		<span class='logeatuGabeak'><a href="signUp.php">SignUp</a> </span>
-		<span class='logeatuak'><a href="logOut.php">LogOut</a> </span>
-		<a id="backButton" href=javascript:history.go(-1);> <img src="../images/atrás.png" width="40" height="40"></a>
+		<?php
+			if (!isset($_SESSION['id'])) {
+				echo "<span><a href='logIn.php'>LogIn</a> </span>
+				<span><a href='signUp.php'>SignUp</a> </span>";
+			}
+			else
+				echo "<span><a href='logOut.php'>LogOut</a> </span>";
+		?>		
 		<div id="logInfo"></div>
-		<h2>Credits</h2>
+		<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
 		<span><a href='layout.php'>Home</a></span>
 		<span><a href='layout.php'>Quizzes</a></span>
-		<br><br>
-		<span class='logeatuak'><a href='getQuestionWZ.php'>Get question</a></span>
-		<span class='logeatuak'><a href='showQuestions.php'>Show questions</a></span>
-		<span class='logeatuak'><a href='showXMLQuestions.php'>Questions in XML</a></span>
-		<br><br>
-		<span class='logeatuak'><a href='handlingQuizes.php'>Handling quizzes</a></span>
-		<span class='logeatuak'><a href='handlingAccounts.php'>Handling accounts</a></span>
+		<br><br>	
+		<?php
+			if (isset($_SESSION['rola']) && $_SESSION['rola'] == 'ikaslea') {
+				echo "<span><a href='getQuestionWZ.php'>Get question</a></span>
+				<span><a href='showQuestions.php'>Show questions</a></span>
+				<span><a href='showXMLQuestions.php'>Questions in XML</a></span>
+				<br><br>
+				<span><a href='handlingQuizes.php'>Handling quizzes</a></span>";
+			}
+			else if (isset($_SESSION['rola']) && $_SESSION['rola'] == 'admin')
+				echo "<span><a href='handlingAccounts.php'>Handling accounts</a></span>";
+		?>
 	</nav>
     <section class="main" id="s1">
 		<div id="Ikaslea1">
@@ -66,5 +73,5 @@
 </html>
 
 <?php
-	include("userInfo.php");
+	if(isset($_SESSION['id'])) include("userInfo.php");
 ?>

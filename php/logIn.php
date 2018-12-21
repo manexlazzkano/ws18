@@ -1,8 +1,7 @@
 <?php
-	header("Control-cache: no-store, no-cache, must-revalidate");
 	session_start();
-	if(isset($_SESSION['id'])) {
-		echo '<script> javascript:history.go(1); </script>';
+	if(isset($_SESSION['sid'])) {
+		echo '<script> history.go(1); </script>';
 	}
 ?>
 
@@ -21,6 +20,7 @@
 			   media='only screen and (max-width: 480px)'
 			   href='../styles/smartphone.css' />
 		<script src="../js/jquery-3.2.1.js"></script>
+		<script src="../js/passwordRecovery.js"></script>
 	</head>
 	<body>
 		<div id='page-wrap'>
@@ -37,28 +37,37 @@
 			</nav>
 			
 			<section class="main" id="s1">
-				<div>				
+				<style>
+					#divForm {float: left;}
+					#divRecovery {float: left;}
+				</style>
+				
+				<div id="divForm">
 				<form action="logIn.php" method="post" enctype="multipart/form-data">
-					Eposta (*): <input type="text" class="input" name="eposta" size="50"/> <br><br>
-					Pasahitza (*): <input type="password" class="input" name="pasahitza" size="50"/> <br><br>
+					Eposta (*): <input type="text" class="input" id="eposta" name="eposta" size="50"/> <br><br>
+					Pasahitza (*): <input type="password" class="input" id="pasahitza" name="pasahitza" size="50"/> <br><br>
 					
 					<input type="submit" name="saioaHasi" value="   Saioa hasi   "/>
 					<input type="reset" name="garbitu" value="     Garbitu     "/>
 				</form>
-				<br><br><br>
-				<input type="button" id="pasahitzaAhaztu" value="   Pasahitza ahaztu zait   "/>
-				</div>		
+				</div>
+				
+				<div id="divRecovery">
+					<input type="button" id="pasahitzaAhaztu" value="   Pasahitza ahaztu zait   "/>
+				</div>
 			</section>
 
 			<footer class='main' id='f1'>
 				<a href='https://github.com'>Link GITHUB</a>
 			</footer>
-		</div>	
+		</div>
 	</body>
 </html>
 
 <?php
 	if (isset($_POST['eposta'])) {
+		
+		$_SESSION['sid'] = rand(0,10);
 		
 		$eposta = $_POST['eposta'];				
 		$pasahitza = $_POST['pasahitza'];

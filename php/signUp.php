@@ -1,8 +1,7 @@
 <?php
-	header("Control-cache: no-store, no-cache, must-revalidate");
 	session_start();
-	if(isset($_SESSION['id'])) {
-		echo '<script> javascript:history.go(1); </script>';
+	if(isset($_SESSION['sid'])) {
+		echo '<script> history.go(1); </script>';
 	}
 ?>
 
@@ -64,6 +63,9 @@
 
 <?php
 	if (isset($_POST['eposta'])) {
+		
+		$_SESSION['sid'] = rand(0,10);
+		
 		$eposta = trim($_POST['eposta']);				
 		$deitura = $galdera = preg_replace('/\s\s+/', ' ', trim($_POST['deitura']));
 		$pasahitza = $_POST['pasahitza'];
@@ -89,13 +91,13 @@
 		if (empty($pasahitzaErrepikatu)) $erroreak = $erroreak . "(*) Pasahitza errepikatu mesedez\\n";
 		else if ($pasahitza != $pasahitzaErrepikatu) $erroreak = $erroreak . "(*) Pasahitza eta errepikatutako pasahitza ez datoz bat\\n";
 		
-		if ($irudiTamaina > 0) {
-			$contains_jpg = preg_match("/\.jpg$/", $irudiIzena);
-			$contains_jpeg = preg_match("/\.jpeg$/", $irudiIzena);
-			$contains_png = preg_match("/\.png$/", $irudiIzena);
-			$contains_JPG = preg_match("/\.JPG$/", $irudiIzena);
-			$contains_JPEG = preg_match("/\.JPEG$/", $irudiIzena);
-			$contains_PNG = preg_match("/\.PNG$/", $irudiIzena);
+		if ($argazkiTamaina > 0) {
+			$contains_jpg = preg_match("/\.jpg$/", $argazkiIzena);
+			$contains_jpeg = preg_match("/\.jpeg$/", $argazkiIzena);
+			$contains_png = preg_match("/\.png$/", $argazkiIzena);
+			$contains_JPG = preg_match("/\.JPG$/", $argazkiIzena);
+			$contains_JPEG = preg_match("/\.JPEG$/", $argazkiIzena);
+			$contains_PNG = preg_match("/\.PNG$/", $argazkiIzena);
 		
 			if (!$contains_jpg && !$contains_jpeg && !$contains_png && !$contains_JPG && !$contains_JPEG && !$contains_PNG)
 				$erroreak = $erroreak . "(hautazkoa) Irudiaren formatua okerra, irudiak '.jpg', '.jpeg', '.png', '.JPG', '.JPEG' edo '.PNG' luzapena eduki behar du";
@@ -110,7 +112,7 @@
 			else {
 				$data = $linki->query("SELECT eposta FROM users WHERE eposta='".$eposta."'");			
 				if($data->num_rows != 0) echo '<script> alert("Eposta hori duen erabiltzailea jada erregistratuta dago"); </script>';
-				else include("verifyUser&PasswordWZ.php");
+				else include("verifyUserAndPasswordWZ.php");
 			}
 		}
 	}

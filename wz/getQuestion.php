@@ -23,6 +23,7 @@
 		
 	function galderaLortu($idGaldera) {
 		
+		$baimena = true;
 		include("../php/dbConfig.php");
 
 		$linki= mysqli_connect($zerbitzaria,$erabiltzailea,$gakoa,$db);	

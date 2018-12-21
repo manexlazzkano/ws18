@@ -1,9 +1,10 @@
 <?php
-	$id = $_SESSION['id'];
-
-if ($id != "") {
+	if(!isset($_SESSION['sid'])) {
+		echo "<script> window.location.href='layout.php'; </script>";
+		die();
+	}
 	
-	echo '<script> $(".logeatuGabeak").hide(); </script>';
+	$id = $_SESSION['id'];
 	
 	include("dbConfig.php");
 	$linki= mysqli_connect($zerbitzaria,$erabiltzailea,$gakoa,$db);
@@ -11,8 +12,8 @@ if ($id != "") {
 	if(!$linki) echo '<script> alert("Konexio errorea"); </script>';
 	else {
 		
-		$data = $linki->query("SELECT * FROM users WHERE ID='".$id."'");		
-		if($data->num_rows != 0) {		
+		$data = $linki->query("SELECT * FROM users WHERE ID='".$id."'");	
+		if($data->num_rows != 0) {
 			$erabiltzailea = $data->fetch_assoc();
 			$eposta = $erabiltzailea['eposta'];
 			
@@ -26,7 +27,4 @@ if ($id != "") {
 			echo '<script> $("#logInfo").append("'.$argazkia.'") </script>';
 		}
 	}
-}
-else
-	echo '<script> $(".logeatuak").hide(); </script>';
 ?>

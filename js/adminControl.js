@@ -43,12 +43,18 @@ $(document).ready(function(){
 });
 
 function eragiketaGauzatu(eragiketa, row) {
-
+	
+	var rowNumber;
+	var rowIdCell;
 	var userId;
 	var datuak;
 	
 	if (eragiketa == "aktibatu" || eragiketa == "blokeatu" || eragiketa == "ezabatu"){
-		userId = parseInt($("#"+row.index()).text());
+		
+		rowNumber = row.index();
+		rowIdCell = $("#"+rowNumber);
+		userId = parseInt(rowIdCell.text());
+		
 		datuak = {
 			"eragiketa" : eragiketa,
 			"userId" : userId
@@ -57,7 +63,11 @@ function eragiketaGauzatu(eragiketa, row) {
 	else if(eragiketa == "aktibatuAukeratuak" || eragiketa == "blokeatuAukeratuak" || eragiketa == "ezabatuAukeratuak"){
 		
 		userId = [];
-		for (var i=0; i < row.length; i++) userId[i] = parseInt($("#"+row[i].index()).text());	
+		for (var i=0; i < row.length; i++) {
+			rowNumber = row[i].index();
+			rowIdCell = $("#"+rowNumber);
+			userId[i] = parseInt(rowIdCell.text());
+		}
 		datuak = {
 			"eragiketa" : eragiketa,
 			"userId" : userId

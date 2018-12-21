@@ -1,12 +1,7 @@
 <?php
-	header("Control-cache: no-store, no-cache, must-revalidate");
 	session_start();
-	if(!isset($_SESSION['rola'])) {
-		echo '<script> javascript:history.go(1); </script>';
-		die();
-	}
-	else if($_SESSION['rola'] != "admin") {
-		echo '<script> javascript:history.go(-1); </script>';
+	if(!isset($_SESSION['sid'])) {
+		echo "<script> window.location.href='layout.php'; </script>";
 		die();
 	}
 ?>
@@ -47,11 +42,6 @@
 				<span><a href='layout.php'>Home</a></span>
 				<span><a href='credits.php'>Credits</a></span>
 				<span><a href='layout.php'>Quizzes</a></span>
-				<br><br>
-				<span><a href='showQuestions.php'>Show questions</a></span>
-				<span><a href='showXMLQuestions.php'>Questions in XML</a></span>
-				<br><br>
-				<span><a href='handlingQuizes.php'>Handling quizzes</a></span>	
 			</nav>
 			
 			<section class="main" id="s1">
